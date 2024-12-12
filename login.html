@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>النادي الأهلي المصري</title>
+    <style>
+        /* إعدادات عامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #111;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        /* الهيدر */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #000;
+            border-bottom: 2px solid #f00;
+        }
+
+        header .logo img {
+            width: 120px;
+            height: auto;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin: 0 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #f00;
+        }
+
+        /* أقسام الموقع */
+        .content-section {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #1e1e1e;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #f00;
+        }
+
+        .news-item {
+            background-color: #222;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .news-item h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .news-item p {
+            font-size: 1rem;
+            color: #ddd;
+        }
+
+        .news-item:hover {
+            background-color: #333;
+        }
+
+        /* قائمة المباريات */
+        #matches ul {
+            list-style: none;
+            margin-top: 20px;
+            padding: 0;
+        }
+
+        #matches ul li {
+            background-color: #222;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #matches ul li:hover {
+            background-color: #333;
+        }
+
+        /* نموذج الاتصال */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        form input, form textarea {
+            width: 300px;
+            padding: 12px;
+            margin: 10px 0;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        form textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        form button {
+            background-color: #f00;
+            border: none;
+            padding: 12px 20px;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 320px;
+        }
+
+        form button:hover {
+            background-color: #b30000;
+        }
+
+        /* الفوتر */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #000;
+            border-top: 2px solid #f00;
+            margin-top: 50px;
+        }
+
+        footer p {
+            color: #fff;
+            font-size: 16px;
+        }
+
+        /* تأثيرات التمرير */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* تحسين تصميم الأزرار */
+        button, a {
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* زر الوضع الداكن والفاتح */
+        #theme-toggle {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background-color: rgb(32, 30, 30);
+            color: white;
+            border-radius: 50%;
+            padding: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #theme-toggle:hover {
+            background-color: #b30000;
+        }
+
+        /* زر تشغيل الموسيقى */
+        #music-toggle {
+            position: fixed;
+            top: 50px;
+            left: 20px;
+            background-color: rgb(32, 30, 30);
+            color: white;
+            border-radius: 50%;
+            padding: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #theme-toggle:hover {
+            background-color: #b30000;
+        }
+
+        /* زر البحث */
+        #search-bar {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px;
+            background-color: #222;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header>
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Al_Ahly_SC_logo.svg/1200px-Al_Ahly_SC_logo.svg.png" alt="شعار النادي الأهلي" />
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#news">الأخبار</a></li>
+                <li><a href="#matches">المباريات</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+                <li><a href="#login">تسجيل الدخول</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- البحث -->
+    <input type="text" id="search-bar" placeholder="ابحث عن الأخبار أو الرياضة">
+
+    <!-- الأخبار -->
+    <section id="news" class="content-section fade-in">
+        <h2>أحدث الأخبار</h2>
+        <div id="news-items"></div>
+    </section>
+
+    <!-- المباريات -->
+    <section id="matches" class="content-section fade-in">
+        <h2>المباريات القادمة</h2>
+        <ul id="match-list">
+            <li>الأهلي ضد فريق A - 15 ديسمبر 2024</li>
+            <li>الأهلي ضد فريق B - 20 ديسمبر 2024</li>
+            <li>الأهلي ضد فريق C - 25 ديسمبر 2024</li>
+        </ul>
+    </section>
+
+    <!-- اتصل بنا -->
+    <section id="contact" class="content-section fade-in">
+        <h2>اتصل بنا</h2>
+        <form>
+            <input type="text" placeholder="اسمك" required>
+            <input type="email" placeholder="بريدك الإلكتروني" required>
+            <textarea placeholder="رسالتك..." required></textarea>
+            <button type="submit">إرسال</button>
+        </form>
+    </section>
+
+    <!-- صفحة تسجيل الدخول -->
+    <section id="login" class="content-section fade-in">
+        <h2>تسجيل الدخول</h2>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="اسم المستخدم" required>
+            <input type="password" id="password" placeholder="كلمة المرور" required>
+            <button type="submit">دخول</button>
+        </form>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <p>&copy; 2024 النادي الأهلي المصري</p>
+    </footer>
+
+    <!-- زر تبديل الموضوع -->
+    <div id="theme-toggle">🌙</div>
+
+    <!-- زر تشغيل الموسيقى -->
+    <div id="music-toggle">🎵</div>
+
+    <audio id="background-music" loop>
+        <source src="music.mp3" type="audio/mp3">
+        متصفحك لا يدعم تشغيل الصوت.
+    </audio>
+
+    <script>
+        // API لجلب الأخبار
+        const apiKey = '2fb67ef1718f40a5aba9d99a85fae78c';
+        const apiUrl = `https://newsapi.org/v2/everything?q=الأهلي&apiKey=${apiKey}`;
+
+        // جلب الأخبار
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const newsContainer = document.getElementById('news-items');
+                data.articles.forEach(article => {
+                    const articleElement = document.createElement('div');
+                    articleElement.classList.add('news-item');
+                    articleElement.innerHTML = `
+                        <h3><a href="${article.url}" target="_blank">${article.title}</a></h3>
+                        <p>${article.description}</p>
+                    `;
+                    newsContainer.appendChild(articleElement);
+                });
+            })
+            .catch(error => console.error('Error fetching news:', error));
+
+        // تبديل الوضع الداكن والفاتح
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        // تشغيل / إيقاف الموسيقى
+        const musicToggle = document.getElementById('music-toggle');
+        const backgroundMusic = document.getElementById('background-music');
+        let musicPlaying = false;
+
+        musicToggle.addEventListener('click', () => {
+            if (musicPlaying) {
+                backgroundMusic.pause();
+                musicPlaying = false;
+            } else {
+                backgroundMusic.play();
+                musicPlaying = true;
+            }
+        });
+
+        // خاصية البحث
+        const searchInput = document.getElementById('search-bar');
+        searchInput.addEventListener('input', () => {
+            const searchQuery = searchInput.value;
+            const searchUrl = `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=${apiKey}`;
+            // إعادة تحميل الأخبار بناءً على الاستعلام
+            fetch(searchUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const newsContainer = document.getElementById('news-items');
+                    newsContainer.innerHTML = '';
+                    data.articles.forEach(article => {
+                        const articleElement = document.createElement('div');
+                        articleElement.classList.add('news-item');
+                        articleElement.innerHTML = `
+                            <h3><a href="${article.url}" target="_blank">${article.title}</a></h3>
+                            <p>${article.description}</p>
+                        `;
+                        newsContainer.appendChild(articleElement);
+                    });
+                })
+                .catch(error => console.error('Error fetching search results:', error));
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
